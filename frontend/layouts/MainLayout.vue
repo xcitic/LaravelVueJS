@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <NavBar />
-    <v-container>
+    <v-container class="fullHeight">
       <router-view />
     </v-container>
     <Footer />
@@ -22,4 +22,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+    .fullHeight {
+        height: 70vh;
+    }
 </style>
