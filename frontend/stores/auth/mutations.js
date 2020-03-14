@@ -1,32 +1,34 @@
+import Auth from '@/utils/Auth.js';
+
 export default {
   auth_request(state) {
-    state.status = 'loading'
+    state.status = 'loading';
   },
 
   auth_success(state, payload) {
-    state.status    = 'logged in'
-    state.authToken = payload.token
-    state.user      = payload.user
+    state.status    = 'logged in';
+    state.authToken = payload.token;
+    state.user      = payload.user;
     // Save to localStorage
-    auth.login(payload.token, payload.user)
+    Auth.login(payload.token, payload.user)
   },
 
   auth_error(state, err) {
     // Update state with error message
-    state.status = 'Error: ' + err
+    state.status = 'Error: ' + err;
   },
 
   logout(state) {
-    state.status    = 'logged out'
-    state.authToken = null
-    state.user = ''
-    auth.logout()
+    state.status    = 'logged out';
+    state.authToken = null;
+    state.user = '';
+    Auth.logout();
   },
 
   updateToken(state, payload) {
     // Update state with $token string and $user object.
-    state.authToken = payload.token
-    state.user      = payload.user
+    state.authToken = payload.token;
+    state.user      = payload.user;
   }
 
 }

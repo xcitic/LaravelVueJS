@@ -14,11 +14,10 @@ import jquery from 'jquery'
 import lodash from 'lodash'
 
 // Internal Modules
-import App from './App'
+import App from './App.vue'
 import store from '@/stores'
 import auth from '@/utils/Auth'
 import router from '@/router'
-import API from '@/utils/Api'
 
 // Vue Plugins
 Vue.use(BootstrapVue)
@@ -31,24 +30,9 @@ window._ = lodash
 window.Popper = popper
 window.$ = window.jQuery = jquery
 window.axios = axios;
-window.api = API;
 
 // Set Internal Globals
 window.auth = auth;
-
-// csrf token
-let csrfToken = document.head.querySelector('meta[name="csrf-token"]');
-
-if (csrfToken) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken.content;
-} else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
-
-// Base URL for the API
-// axios.defaults.baseURL = `http://localhost/api`
-axios.defaults.baseURL = `http://127.0.0.1:8000/api`
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 // Create the Vue instance and mount it to the element id: #app

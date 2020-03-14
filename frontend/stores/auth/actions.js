@@ -1,55 +1,42 @@
+import API from '@/utils/Api.js';
+import Auth from '@/utils/Auth.js';
+
 export default {
 
-  async login({ state, commit }, payload) {
+  async login({state, commit}, payload) {
     // Change status
-    commit('auth_request')
+    commit('auth_request');
     // Make api request
-    axios.post(api.register(payload))
-      // On successful response, create mutation for saving user info
-      .then((resp) => {
-        let data = {
-          token: resp.data.token,
-          user: resp.data.user
-        }
-        commit('auth_success', data)
-        resolve()
-      })
+    try {
+      let result = await API.register(payload);
+      commit('auth_success', result);
+    } catch (err) {
       // On failure clear all local data
-      .catch((err) => {
-        commit('auth_error', err)
-        auth.logout()
-        reject(err)
-      })
+      commit('auth_error', err);
+      Auth.logout();
+    }
   },
 
-  async register({ commit }, payload) {
-    commit('auth_request')
-    axios.post(API.register(payload))
-      .then((resp) => {
-        let data = {
-          token: resp.data.token,
-          user: resp.data.user
-        }
-        commit('auth_success', data)
-        resolve()
-      })
-      .catch((err) => {
-        commit('auth_error', err)
-        auth.logout()
-        reject(err)
-      })
+  async register({commit}, payload) {
+    commit('auth_request');
+    try {
+      let result = API.register(payload);
+      commit('auth_success', result);
+    } catch(err) {
+      commit('auth_error', err);
+      Auth.logout();
+    }
   },
 
-  async logout({ commit }) {
-    commit('logout')
+  logout({commit}) {
+    commit('logout');
   },
 
-  async fetchToken({ commit }) {
-    let data = {
+  fetchToken({commit}) {
+    let userData = {
       token: localStorage.getItem('token'),
       user: JSON.parse(localStorage.getItem('user'))
-    }
-    // send mutation to vuex
-    commit('updateToken', data)
+    };
+    commit('updateToken', userData);
   }
 }
