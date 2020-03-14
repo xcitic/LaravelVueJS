@@ -1,24 +1,20 @@
 class Auth {
   constructor()
   {
-    this.token = null
-    this.user = null
+    this.token = null;
+    this.user = null;
   }
-
 
   login(token, user)
   {
-    window.localStorage.setItem('token', token);
-    window.localStorage.setItem('user', JSON.stringify(user));
-
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   logout()
   {
     localStorage.removeItem('token')
     localStorage.removeItem('user')
-    axios.defaults.headers.common['Authorization'] = ''
   }
 
 }

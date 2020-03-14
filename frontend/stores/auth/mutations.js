@@ -9,7 +9,6 @@ export default {
     state.status    = 'logged in';
     state.authToken = payload.token;
     state.user      = payload.user;
-    // Save to localStorage
     Auth.login(payload.token, payload.user)
   },
 

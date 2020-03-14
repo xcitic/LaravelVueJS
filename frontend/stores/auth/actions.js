@@ -8,7 +8,7 @@ export default {
     commit('auth_request');
     // Make api request
     try {
-      let result = await API.register(payload);
+      let result = await API.login(payload);
       commit('auth_success', result);
     } catch (err) {
       // On failure clear all local data
@@ -20,7 +20,7 @@ export default {
   async register({commit}, payload) {
     commit('auth_request');
     try {
-      let result = API.register(payload);
+      let result = await API.register(payload);
       commit('auth_success', result);
     } catch(err) {
       commit('auth_error', err);
