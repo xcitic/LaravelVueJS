@@ -24,15 +24,10 @@
 Uses [Laravel](https://laravel.com) as backend and [VueJS](https://github.com/vuejs/vue) as frontend.
 Authorization is handled by Passport with JWT token.
 
-Don't wast too much time setting up the initial stack.
-Get up and running in minutes with
-
-Plug right into your API and build features.
-
 # Frontend
 VueJS Frontend with Vuex statemanagement, Vuerouter and Vuetify design kit.
 # Backend
-PHP Laravel Backend with Passport Local authentication, API routes, user migrations and postgreSQL database.
+PHP Laravel Backend with Passport Local authentication, API routes, user migrations and SQL database (your choice, sqlite is used for demo).
 
 
 
